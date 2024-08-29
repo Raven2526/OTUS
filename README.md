@@ -284,8 +284,6 @@ Public Repository for Observability Course Homeworks
 	vi /etc/prometheus/prometheus.yml
 -->
 	rule_files:
-	  # - "first_rules.yml"
-	  # - "second_rules.yml"
 	  - "alert.rules.yml"
 --
 5. Перезапуск Prometheus:
@@ -331,8 +329,6 @@ Public Repository for Observability Course Homeworks
 	vi /etc/prometheus/prometheus.yml
 -->
 	rule_files:
-	  # - "first_rules.yml"
-	  # - "second_rules.yml"
 	  - "alert.rules.yml"
 	  - "services.rules.yml"
 --
