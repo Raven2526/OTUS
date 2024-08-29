@@ -288,7 +288,6 @@ Public Repository for Observability Course Homeworks
 --
 5. Перезапуск Prometheus:
 	systemctl restart prometheus
-
 #Node1 VM
 6. Настройка мониторинга служб VM:
 	vi /etc/systemd/system/node_exporter.service
@@ -298,7 +297,6 @@ Public Repository for Observability Course Homeworks
 7. Рестарт служб:
 	systemctl daemon-reload
 	systemctl restart node_exporter
-
 #Main VM
 8. Настройка мониторинга nginx, mariadb, chronyd:
 	vi /etc/prometheus/services.rules.yml
