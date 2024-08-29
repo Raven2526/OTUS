@@ -399,7 +399,6 @@ Public Repository for Observability Course Homeworks
 	systemctl enable mysql_exporter
 	systemctl start mysql_exporter
 	systemctl status mysql_exporter
-
 #Main VM
 8. Добавление правила в Prometheus:
 	vi /etc/prometheus/prometheus.yml
@@ -415,7 +414,6 @@ Public Repository for Observability Course Homeworks
 --
 9.Снова перезапуск Promeheus:
 	systemctl restart prometheus
-
 #Node1 VM
 1. Скачивание и установка blackbox_exporter:
 	wget https://github.com/prometheus/blackbox_exporter/releases/download/v0.25.0/blackbox_exporter-0.25.0.linux-amd64.tar.gz
@@ -494,7 +492,6 @@ Public Repository for Observability Course Homeworks
 8. Настройка автозапуска, проверка:
 	systemctl enable --now blackbox_exporter
 	systemctl status blackbox_exporter
-
 #Main VM
 9. Настройка blackbox_exporter в Prometheus:
 	vi /etc/prometheus/prometheus.yml
