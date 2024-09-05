@@ -41,7 +41,7 @@ scrape_configs:
     static_configs:
       - targets:
         - 192.168.0.104:9100
-        - 192.168.0.102.8428
+        - 192.168.0.102:8428
 
   - job_name: "mysqldb"
     scrape_interval: 5s
