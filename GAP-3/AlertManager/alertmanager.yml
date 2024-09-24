@@ -1,0 +1,30 @@
+global:
+  resolve_timeout: 10s
+  telegram_api_url: "https://api.telegram.org"
+route:
+  receiver: "blackhole"
+  group_wait: 10s
+  group_interval: 10s
+  repeat_interval: 5m
+  group_by: ['alertname', 'severity']
+  routes:
+  - receiver: 'otus_critical_alert_bot'
+    matchers:
+    - severity = "critical"
+    - notification = "otus_critical_alert_bot"
+  - receiver: 'otus_warning_alert_bot'
+    matchers:
+    - severity = "warning"
+    - notification = "otus_warning_alert_bot" 
+receivers:
+  - name: 'otus_critical_alert_bot'
+    telegram_configs:
+    - chat_id: -1002162782026
+      parse_mode: "HTML"
+      bot_token: '6756164897:AAF_PNmB7eMEo7w87OwkTTtWUPd1XSvAPeo'
+  - name: 'otus_warning_alert_bot'
+    telegram_configs:
+    - chat_id: -1002401599329
+      parse_mode: "HTML"
+      bot_token: '7426518132:AAEsSH0i7N0j7MIqVqzn2RU_LLSUup-6BRM'
+  - name: 'blackhole'
