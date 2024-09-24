@@ -1,0 +1,12 @@
+groups:
+- name: warning
+  rules:
+  - alert: node_exporter_status
+    expr: up{job="node_exporter"} == 0
+    for: 1m
+    labels:
+      severity: warning
+      notification: otus_warning_alert_bot
+    annotations:
+      description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 1 minute."
+      summary: Instance {{ $labels.instance }} down
