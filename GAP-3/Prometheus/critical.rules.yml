@@ -1,0 +1,12 @@
+groups:
+- name: critical
+  rules:
+    - alert: mysql_exporter_status
+      expr: up{job="mysql_exporter"} == 0
+      for: 1m
+      labels:
+        severity: critical
+        notification: otus_critical_alert_bot
+      annotations:
+        summary: "Job {{ $labels.job }} is down"
+        description: "Job {{ $labels.job }} is down for the last 1m."
