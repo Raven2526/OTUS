@@ -21,10 +21,10 @@ receivers:
     telegram_configs:
     - chat_id: -1002162782026
       parse_mode: "HTML"
-      bot_token: '6756164897:AAF_PNmB7eMEo7w87OwkTTtWUPd1XSvAPeo'
+      bot_token: '675616****:AAF_PNmB7eMEo7w87OwkTTtWUPd1XSvAPeo'
   - name: 'otus_warning_alert_bot'
     telegram_configs:
     - chat_id: -1002401599329
       parse_mode: "HTML"
-      bot_token: '7426518132:AAEsSH0i7N0j7MIqVqzn2RU_LLSUup-6BRM'
+      bot_token: '742651****:AAEsSH0i7N0j7MIqVqzn2RU_LLSUup-6BRM'
   - name: 'blackhole'
