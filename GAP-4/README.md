@@ -3,7 +3,7 @@
 ```
 yum install grafana -y
 ```
-3. Настройка автозагрузки, запуск демона, проверка статуса:
+2. Настройка автозагрузки, запуск демона, проверка статуса:
 ```
 systemctl enable grafana-server
 ```
@@ -13,28 +13,28 @@ systemctl start grafana-server
 ```
 systemctl status grafana-server
 ```
-5. Настройка порта в firewalld:
+3. Настройка порта в firewalld:
 ```
 firewall-cmd --zone=public --add-port=3000/tcp --permanent
 ```
 ```
 systemctl reload firewalld
 ```
-7. Проверка доступности Grafana:
+4. Проверка доступности Grafana:
 </br> Firefox --> http://localhost:3000/
-8. Настройка источника данных Prometheus:
+5. Настройка источника данных Prometheus:
 ![Conections](https://github.com/Raven2526/OTUS/blob/main/GAP-4/Images/connections.png)
 
-9. Создание требуемых папок:
+6. Создание требуемых папок:
 ![Folders](https://github.com/Raven2526/OTUS/blob/main/GAP-4/Images/folders.png)
 
-10. Импортированный дашборд для BlackBox Exporter:
+7. Импортированный дашборд для BlackBox Exporter:
 ![Imported](https://github.com/Raven2526/OTUS/blob/main/GAP-4/Images/infra.png)
 
-11. Состояние некоторых элементов CMS:
+8. Состояние некоторых элементов CMS:
 ![Apps](https://github.com/Raven2526/OTUS/blob/main/GAP-4/Images/app.png)
 
-12. Создание правила для алертинга:
+9. Создание правила для алертинга:
 ![Alert Rule](https://github.com/Raven2526/OTUS/blob/main/GAP-4/Images/alert_rule.png)
 
 Ключевые моменты:
@@ -54,16 +54,16 @@ systemctl reload firewalld
 На панели дашборда виден промежуток недоступности, и даже создаётся аннотация:
 ![Alerting](https://github.com/Raven2526/OTUS/blob/main/GAP-4/Images/alerting.png)
 
-13. Для DrillDown-дашборда создаётся отдельная панель:
+10. Для DrillDown-дашборда создаётся отдельная панель:
 ![DrillDown](https://github.com/Raven2526/OTUS/blob/main/GAP-4/Images/drilldown.png)
 
-14. Если правильно было понято задание, то DrillDown-дашборд решено было делать через свойства "Override":
+11. Если правильно было понято задание, то DrillDown-дашборд решено было делать через свойства "Override":
 ![Override](https://github.com/Raven2526/OTUS/blob/main/GAP-4/Images/override.png)
 
-15. Для каждого набора значений из "Query" - $name, $alias, $instance, $job можно задать нужный линк.
-16. При этом элементы панели становятся интерактивными: для каждой отдельной метрики можно перейти в конкретную детализацию: 
+12. Для каждого набора значений из "Query" - $name, $alias, $instance, $job можно задать нужный линк.
+13. При этом элементы панели становятся интерактивными: для каждой отдельной метрики можно перейти в конкретную детализацию: 
 ![ICMP](https://github.com/Raven2526/OTUS/blob/main/GAP-4/Images/drilldown_icmp.png)
 
 ![ya.ru](https://github.com/Raven2526/OTUS/blob/main/GAP-4/Images/drilldown_ya_ru.png)
 
-17. <b>P. S.</b>Да, можно сделать ещё красивее - через "Labels" свойств дашборда, тогда детализация будет динамическая ($name, $alias и т.д.), но силы были уже слабые, в задании конкретно именно это не оговорено ![Smile](https://github.com/Raven2526/OTUS/blob/main/GAP-4/Images/smile_16.png)
+14. <b>P. S.</b>Да, можно сделать ещё красивее - через "Labels" свойств дашборда, тогда детализация будет динамическая ($name, $alias и т.д.), но силы были уже слабые, в задании конкретно именно это не оговорено ![Smile](https://github.com/Raven2526/OTUS/blob/main/GAP-4/Images/smile_16.png)
