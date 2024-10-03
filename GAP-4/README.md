@@ -66,4 +66,4 @@ systemctl reload firewalld
 
 ![ya.ru](https://github.com/Raven2526/OTUS/blob/main/GAP-4/Images/drilldown_ya_ru.png)
 
-14. <b>P. S.</b>Да, можно сделать ещё красивее - через "Variables" свойств дашборда, тогда детализация будет динамическая ($name, $alias и т.д.), но силы были уже слабые, в задании конкретно именно это не оговорено ![Smile](https://github.com/Raven2526/OTUS/blob/main/GAP-4/Images/smile_16.png)
+14. <b>P. S.</b>Да, можно сделать ещё красивее - через "Variables" свойств дашборда, тогда детализация будет динамическая (${__.name} и т.д.), но силы были уже слабые, в задании конкретно именно это не оговорено ![Smile](https://github.com/Raven2526/OTUS/blob/main/GAP-4/Images/smile_16.png)
