@@ -133,8 +133,6 @@
 	exit
 	curl -G http://localhost:8086/query?pretty=true -u admin:adminpassword --data-urlencode "q=show users"
 5. Добавление репозитория Telegraf:
-	# influxdata-archive_compat.key GPG fingerprint:
-	#     9D53 9D90 D332 8DC7 D6C8 D3B9 D8FF 8E1F 7DF8 B07E
 	cat <<EOF | sudo tee /etc/yum.repos.d/influxdata.repo
 	[influxdata]
 	name = InfluxData Repository - Stable
