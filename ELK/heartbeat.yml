@@ -1,0 +1,41 @@
+############################# Heartbeat ######################################
+
+heartbeat.config.monitors:
+  path: ${path.config}/monitors.d/*.yml
+  reload.enabled: true
+  reload.period: 10s
+
+heartbeat.monitors:
+- type: http
+  enabled: true
+  id: my-cms-service
+  name: My CMS HTTP
+  urls: ["192.168.0.110:80"]
+  schedule: '@every 5s'
+
+- type: tcp
+  enabled: true
+  id: my-cms-mysql-service
+  name: My CMS MySQL
+  hosts: ["192.168.0.110:3306"]
+  schedule: '@every 5s'
+
+# =================================== Kibana ===================================
+
+setup.kibana:
+  host: "192.168.0.106:5601"
+  protocol: "http"
+  username: "elastic"
+  password: "***"
+
+# ---------------------------- Elasticsearch Output ----------------------------
+
+output.elasticsearch:
+  hosts: ["192.168.0.106:9200"]
+  preset: balanced
+  protocol: "https"
+  username: "elastic"
+  password: "***"
+  ssl:
+    enabled: true
+    ca_trusted_fingerprint: "***"
