@@ -1,0 +1,70 @@
+#============================  Config Reloading ===============================
+
+metricbeat.config.modules:
+  path: ${path.config}/modules.d/*.yml
+  reload.period: 10s
+  reload.enabled: true
+metricbeat.max_start_delay: 10s
+
+# =================================== Kibana ===================================
+
+setup.kibana:
+  host: "192.168.0.106:5601"
+  protocol: "http"
+  username: "elastic"
+  password: "***"
+
+# ---------------------------- Elasticsearch Output ----------------------------
+
+output.elasticsearch:
+  hosts: ["192.168.0.106:9200"]
+  preset: balanced
+  protocol: "https"
+  username: "elastic"
+  password: "***"
+  ssl:
+    enabled: true
+    ca_trusted_fingerprint: "***"
+
+#==========================  Modules configuration =============================
+
+metricbeat.modules:
+
+#-------------------------------- System Module --------------------------------
+
+- module: system
+  metricsets:
+    - cpu
+    - load
+    - memory
+    - network
+    - process
+    - process_summary
+    - uptime
+    - socket_summary
+  enabled: true
+  period: 10s
+  processes: ['.*']
+
+  cpu.metrics:  ["percentages","normalized_percentages"]
+  core.metrics: ["percentages"]
+
+#-------------------------------- Nginx Module --------------------------------
+
+- module: nginx
+  metricsets: ["stubstatus"]
+  enabled: true
+  period: 10s
+
+  hosts: ["http://192.168.0.110"]
+
+  server_status_path: "nginx_status"
+
+#-------------------------------- MySQL Module --------------------------------
+
+- module: mysql
+  metricsets:
+    - status
+  period: 10s
+
+  hosts: ["wordpress:secret@tcp(192.168.0.110:3306)/"]
