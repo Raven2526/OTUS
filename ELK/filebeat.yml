@@ -1,0 +1,80 @@
+# ============================== Filebeat inputs ===============================
+
+filebeat.inputs:
+- type: filestream
+  id: my-filestream-id
+  enabled: true
+  paths:
+    - /var/log/*.log
+
+# ============================== Filebeat modules ==============================
+
+filebeat.config.modules:
+  path: ${path.config}/modules.d/*.yml
+  reload.enabled: true
+  reload.period: 10s
+
+# =================================== Kibana ===================================
+
+setup.kibana:
+  host: "192.168.0.106:5601"
+  protocol: "http"
+  username: "elastic"
+  password: "***"
+
+# ---------------------------- Elasticsearch Output ----------------------------
+
+output.elasticsearch:
+  hosts: ["192.168.0.106:9200"]
+  preset: balanced
+  protocol: "https"
+  username: "elastic"
+  password: "***"
+  ssl:
+    enabled: true
+    ca_trusted_fingerprint: "***"
+
+#==========================  Modules configuration =============================
+
+filebeat.modules:
+
+#-------------------------------- Nginx Module --------------------------------
+
+- module: nginx
+  access:
+    enabled: true
+    var.paths: ["/var/log/nginx/access.log*"]
+
+  error:
+    enabled: true
+    var.paths: ["/var/log/nginx/error.log*"]
+
+  ingress_controller:
+    enabled: true
+    var.paths: ["/var/log/nginx/ingress.log*"]
+
+#-------------------------------- MySQL Module --------------------------------
+
+- module: mysql
+  error:
+    enabled: true
+    var.paths: ["/var/log/mysql/error.log*"]
+
+  slowlog:
+    enabled: true
+    var.paths: ["/var/log/mysql/slow.log*"]
+
+#------------------------------- PHP-FPM Custom Module -------------------------
+
+- module: php-fpm
+  error:
+    enabled: true
+    var.paths: ["/var/log/php-fpm/error.log*"]
+
+# ================================= Processors =================================
+#nginx access logs to JSON
+processors:
+  - dissect:
+    tokenizer: '%{ip} - - [%{@timestamp}] "%{request}" %{status} %{size} "-" "%{agent}" "-"'
+    field: "original"
+    target_prefix: ""
