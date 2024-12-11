@@ -1,0 +1,39 @@
+sources:
+  this_vm:
+    type: syslog
+    address: 0.0.0.0:9000
+    mode: tcp
+
+transforms:
+  local_transform:
+    type: remap
+    inputs:
+      - this_vm
+    source: |
+      parsed, err = parse_json(.message)
+      if err != null {
+      log(err, level: "error")
+      }
+      . |= object(parsed) ?? {}
+
+sinks:
+  elasticsearch_out:
+    type: elasticsearch
+    inputs:
+      - local_transform
+    api_version: auto
+    compression: none
+    doc_type: _doc
+    id_key: id
+    mode: bulk
+    opensearch_service_type: managed
+    endpoints:
+      - https://192.168.0.106:9200
+    tls:
+      ca_file: "/etc/vector/certs/CA.pem"
+    bulk:
+      index: "logs-generic-default"
+    auth:
+      user: "elastic"
+      password: "***"
+      strategy: "basic"
