@@ -1,0 +1,21 @@
+input {
+    beats {
+        port => "5044"
+    }
+}
+
+filter {
+    grok {
+        match => { "message" => "%{COMBINEDAPACHELOG}"}
+    }
+}
+
+output {
+    elasticsearch {
+        hosts => [ "https://192.168.0.106:9200" ]
+        user => 'elastic'
+        password => '***'
+        ssl_enabled => true
+        ca_trusted_fingerprint => '***'
+    }
+}
