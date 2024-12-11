@@ -1,0 +1,7 @@
+# ------------ Dead-Letter Queue Settings --------------
+
+dead_letter_queue.enable: true
+dead_letter_queue.max_bytes: 1024mb
+dead_letter_queue.flush_interval: 5000
+dead_letter_queue.retain.age: 1d
+path.dead_letter_queue: "/var/log/logstash/dead_letter_queue"
