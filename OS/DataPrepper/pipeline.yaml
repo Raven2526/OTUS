@@ -1,0 +1,17 @@
+log-pipeline:
+  source:
+    http:
+      ssl: false
+      authentication:
+        unauthenticated:
+      port: 2021
+  processor:
+    - grok:
+        match:
+          log: [ "%{COMMONAPACHELOG}" ]
+  sink:
+    - opensearch:
+        hosts: [ "https://localhost:9200" ]
+        username: "admin"
+        password: "***"
+        index: apache_logs
